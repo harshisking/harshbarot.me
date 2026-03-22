@@ -1,93 +1,354 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Off The Books</title>
+<title>Off The Books — Harsh Barot</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+  :root {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #151515;
+    --bg-card: #1a1a1a;
+    --text-primary: #eaeaea;
+    --text-secondary: #bdbdbd;
+    --text-muted: #9a9a9a;
+    --accent: #e2cbf6;
+    --accent-dim: rgba(226, 203, 246, 0.1);
+    --border: #2a2a2a;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   body {
-  margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
-  background: #0f0f0f;
-  color: #eaeaea;
-  padding: 40px 20px;
-}
-
-  .story-container {
-  width: 90%;
-  max-width: 1200px;
-  background: #151515;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
-  line-height: 1.8;
-  margin: auto;
-}
-
-
-  .story-container h1 {
-    font-size: 2rem;
-    margin-bottom: 0.3rem;
-    color: #7dd3fc;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    line-height: 1.8;
+    padding: 40px 20px;
   }
 
-  .story-meta {
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Navigation */
+  .nav {
+    margin-bottom: 3rem;
+  }
+
+  .back-link {
+    color: var(--text-secondary);
+    text-decoration: none;
     font-size: 0.95rem;
-    color: #9a9a9a;
-    margin-bottom: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+    padding: 0.5rem 0;
   }
 
-  .back-btn {
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  /* Story Header */
+  .story-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .genre-tag {
     display: inline-block;
-    margin-bottom: 1.2rem;
-    padding: 10px 18px;
-    font-size: 15px;
+    margin-bottom: 1rem;
+    padding: 0.4rem 1rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.85rem;
     font-weight: 600;
-    background: #7dd3fc;
-    color: #0f0f0f;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .meta {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .status-hold {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* Story Content */
+  .story-content {
+    font-size: 1.125rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+  }
+
+  .story-content p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* Drop cap for first paragraph */
+  .story-content > p:first-of-type::first-letter {
+    font-size: 3.5rem;
+    float: left;
+    line-height: 0.8;
+    padding-right: 0.1em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 0.1em;
+  }
+
+  /* Short paragraph styling for dramatic effect */
+  .story-content p.short {
+    margin-bottom: 0.8rem;
+    text-align: left;
+  }
+
+  /* Divider between sections */
+  .divider {
+    text-align: center;
+    margin: 3rem 0;
+    color: var(--border);
+    font-size: 1.5rem;
+    letter-spacing: 1rem;
+  }
+
+  /* End marker */
+  .end-marker {
+    text-align: center;
+    margin-top: 4rem;
+    color: var(--accent);
+    font-size: 1.2rem;
+    opacity: 0.6;
+  }
+
+  /* Footer */
+  .story-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
     border-radius: 8px;
     text-decoration: none;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  .back-btn:hover {
-    transform: scale(1.05);
-    opacity: 0.85;
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-weight: 600;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(226, 203, 246, 0.2);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Selection color */
+  ::selection {
+    background: var(--accent);
+    color: var(--bg-primary);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    body {
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .story-content {
+      font-size: 1.1rem;
+    }
+
+    .story-content > p:first-of-type::first-letter {
+      font-size: 2.5rem;
+    }
+
+    .meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .story-header, .story-content {
+    animation: fadeIn 0.6s ease-out;
   }
 </style>
 </head>
 <body>
+<div class="container">
 
-<div class="story-container">
-  <a href="/stories.html" class="back-btn">← Back to Stories</a>
+  <nav class="nav">
+    <a href="/stories.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Stories
+    </a>
+  </nav>
 
-  <h1>Off The Books</h1>
-  <div class="story-meta">Last Updated: 09/01/2026 • Status: On-Hold</div>
+  <header class="story-header">
+    <span class="genre-tag">Mystery</span>
+    <h1>Off The Books</h1>
+    <div class="meta">
+      <span><i class="far fa-calendar"></i> Last Updated: 09/01/2026</span>
+      <span class="status-hold"><i class="fas fa-pause"></i> Status: On-Hold</span>
+      <span><i class="far fa-clock"></i> 5 min read</span>
+    </div>
+  </header>
 
-  <p>
-    The room was washed with blinding lights. Cigarette smoke lingered in the air.
-<br>One table. Three chairs.
-<br>One was occupied. The other two waited on the opposite side.
-<br>He was cuffed to the table with one hand. The other held a cigarette, steady, unhurried.
-<br>I entered the room with my partner <strong>Dhruv Siri</strong>. My name is <strong>Ram Mohan</strong>. We had a single file between us - just one - with the name <strong>Kian Dharm</strong>.
-  </p>
+  <article class="story-content">
+    <p class="short">
+      The room was washed with blinding lights. Cigarette smoke lingered in the air.
+    </p>
 
-  <p>
-    He had volunteered to give us information on Dante, the crime lord the state had decided not to take alive.
-<br>We took the vacant chairs. Dhruv had already begun to tap his pen, “There is nothing in his file”, he whispered. How could a man with no record nor any connections would know about Dante.
-<br>“Mr. Dharm, my officers tell me you have information about Dante. They also said that your demands are… uncommon.” I said, “They are” he spoke with utter calmness and politeness.
-  </p>
-  <p>
-    “Mr. Dharm, what information are you willing to give us?”, “his location” he replied. “And how” I asked carefully, “did you find him?”. “It's not hard to find anyone for me.” he replied.
-<br>“Well then pray tell”,
-<br>“You fulfil your end of the deal, then I would mine”,
-<br>“You want a free ticket out of the country with a new identity. What do you think assures us that your intel is valid”, I spoke pointing to his file, “when we don’t even know who you are”,
-<br>“My father worked with Dante... more like he worked for my father”,
-<br>“I think this is it, you will be charged for wasting the governments resources”,
-<br>“A week ago, ” he said, “Bhatt was found dead, shot himself, but did he… Kareem had killed him.”
-<br>“How did he know?” I asked myself. The crime scene was so clean. It took us 6 days to figure this out, let alone a common man but he was not a common man, was he?
-  </p>
+    <p class="short">
+      One table. Three chairs.
+    </p>
+
+    <p class="short">
+      One was occupied. The other two waited on the opposite side.
+    </p>
+
+    <p class="short">
+      He was cuffed to the table with one hand. The other held a cigarette, steady, unhurried.
+    </p>
+
+    <p>
+      I entered the room with my partner <strong>Dhruv Siri</strong>. My name is <strong>Ram Mohan</strong>. We had a single file between us - just one - with the name <strong>Kian Dharm</strong>.
+    </p>
+
+    <p>
+      He had volunteered to give us information on Dante, the crime lord the state had decided not to take alive.
+    </p>
+
+    <p>
+      We took the vacant chairs. Dhruv had already begun to tap his pen, "There is nothing in his file", he whispered. How could a man with no record nor any connections would know about Dante.
+    </p>
+
+    <p>
+      "Mr. Dharm, my officers tell me you have information about Dante. They also said that your demands are… uncommon." I said, "They are" he spoke with utter calmness and politeness.
+    </p>
+
+    <p>
+      "Mr. Dharm, what information are you willing to give us?", "his location" he replied. "And how" I asked carefully, "did you find him?". "It's not hard to find anyone for me." he replied.
+    </p>
+
+    <p>
+      "Well then pray tell",
+    </p>
+
+    <p>
+      "You fulfil your end of the deal, then I would mine",
+    </p>
+
+    <p>
+      "You want a free ticket out of the country with a new identity. What do you think assures us that your intel is valid", I spoke pointing to his file, "when we don't even know who you are",
+    </p>
+
+    <p>
+      "My father worked with Dante... more like he worked for my father",
+    </p>
+
+    <p>
+      "I think this is it, you will be charged for wasting the governments resources",
+    </p>
+
+    <p>
+      "A week ago, " he said, "Bhatt was found dead, shot himself, but did he… Kareem had killed him."
+    </p>
+
+    <p>
+      "How did he know?" I asked myself. The crime scene was so clean. It took us 6 days to figure this out, let alone a common man but he was not a common man, was he?
+    </p>
+
+  </article>
+
+  <div class="end-marker">#</div>
+
+  <footer class="story-footer">
+    <div class="nav-buttons">
+      <span class="btn btn-secondary" style="opacity: 0.5; cursor: not-allowed;">
+        <i class="fas fa-arrow-left"></i> Previous
+      </span>
+      <a href="/stories/ayedoctor.html" class="btn btn-secondary">
+        Next <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    <a href="/stories.html" class="btn btn-primary">
+      <i class="fas fa-book"></i> All Stories
+    </a>
+  </footer>
+
 </div>
-
 </body>
 </html>

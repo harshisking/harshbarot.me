@@ -1,75 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Harsh Barot</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #0f0f0f;
-      color: #eaeaea;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .card {
-      max-width: 520px;
-      padding: 2rem;
-      border-radius: 12px;
-      background: #151515;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    }
-    h1 {
-      margin: 0 0 0.5rem 0;
-      font-size: 2.2rem;
-    }
-    p {
-      line-height: 1.6;
-      color: #bdbdbd;
-    }
-    .links a {
-      margin-right: 1rem;
-      color: #7dd3fc;
-      text-decoration: none;
-    }
-    .stories-btn {
-      display: inline-block;
-      padding: 14px 28px;
-      font-size: 18px;
-      font-weight: 600;
-      border-radius: 12px;
-      margin-top: 1.2rem;
-      color: #0f0f0f;
-      background: #7dd3fc;
-      text-decoration: none;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Barot | Student & Builder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Updated to soft purple/lavender theme */
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #151515;
+            --bg-card: #1a1a1a;
+            --text-primary: #eaeaea;
+            --text-secondary: #bdbdbd;
+            --accent: #e2cbf6;  /* Soft lavender */
+            --accent-dark: #b794c4;  /* Darker purple for hover states */
+            --border: #2a2a2a;
+        }
 
-    .stories-btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      opacity: 0.9;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .stories-btn:active {
-      transform: translateY(1px) scale(0.98);
-}
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
 
-  </style>
+        /* Navigation - Minimal */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1.2rem 0;
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero - Your Card Style Expanded */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            margin-top: -60px; /* Offset nav */
+        }
+
+        .hero-card {
+            max-width: 600px;
+            width: 100%;
+            padding: 3rem;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Buttons - Updated with purple accent */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            color: var(--bg-primary);
+            background: var(--accent);
+            box-shadow: 0 4px 15px rgba(226, 203, 246, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(226, 203, 246, 0.3);
+        }
+
+        .btn-secondary {
+            color: var(--accent);
+            background: transparent;
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(226, 203, 246, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .hero-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .hero-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .hero-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title i {
+            color: var(--accent);
+        }
+
+        /* About Section */
+        .about-content {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+
+        /* Skills - Minimal Tags */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-item:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            background: rgba(226, 203, 246, 0.05);
+        }
+
+        /* Projects - Card Style */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .project-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .project-item:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-title:hover {
+            text-decoration: underline;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .project-links a:hover {
+            color: var(--accent);
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .project-tags {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            color: var(--accent);
+            background: rgba(226, 203, 246, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        /* Stories Section Preview */
+        .stories-preview {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .stories-preview h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .stories-preview p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-card {
+                padding: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            section {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        section {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Harsh Barot</h1>
-    <p>
-      Student. Builder. Curious about systems, code, and ideas.
-    </p>
-    <div class="links">
-      <a href="https://github.com/harshisking">GitHub</a>
-      <a href="#">Projects</a>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">~/harsh</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="/stories.html">Stories</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Your Card Style -->
+    <div class="hero">
+        <div class="hero-card">
+            <h1>Harsh Barot</h1>
+            <p class="tagline">Student. Builder. Curious about systems, code, and ideas.</p>
+            
+            <p class="hero-description">
+                High school student passionate about Python, Linux, and building things that matter. 
+                I love exploring how systems work under the hood and turning ideas into code.
+            </p>
+
+            <div>
+                <a href="/stories.html" class="btn btn-primary">
+                    <i class="fas fa-book-open"></i> Read My Stories
+                </a>
+                <a href="https://github.com/harshisking" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+
+            <div class="hero-links">
+                <a href="#projects"><i class="fas fa-code"></i> Projects</a>
+            </div>
+        </div>
     </div>
-    <a href="/stories.html" class="stories-btn">Read My Stories</a>
-  </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title"><i class="fas fa-user"></i> About</h2>
+        <div class="about-content">
+            <p>
+                I'm currently a high school student with a deep interest in software development. 
+                My journey started with curiosity about how computers work, which led me to Linux and Python.
+            </p>
+            <p>
+                When I'm not studying, you'll find me writing scripts to automate boring tasks, 
+                customizing my development environment, or learning about backend systems.
+            </p>
+            <p>
+                I believe in learning by building, and I'm always working on something new.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title"><i class="fas fa-tools"></i> Skills & Tools</h2>
+        <div class="skills-grid">
+            <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+            <div class="skill-item"><i class="fab fa-linux"></i> Linux</div>
+            <div class="skill-item"><i class="fas fa-terminal"></i> Bash</div>
+            <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
+            <div class="skill-item"><i class="fab fa-github"></i> GitHub</div>
+            <div class="skill-item"><i class="fas fa-server"></i> Backend</div>
+            <div class="skill-item"><i class="fas fa-robot"></i> Automation</div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title"><i class="fas fa-rocket"></i> Projects</h2>
+        <div class="projects-list">
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <a href="https://github.com/harshisking/VoMail" class="project-title">
+                        <i class="fas fa-folder-open"></i> VoMail
+                    </a>
+                    <div class="project-links">
+                        <a href="https://github.com/harshisking/VoMail" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <p class="project-desc">
+                    Python CLI tool that allows you the ability to compose and send emails using AI and your voice. 
+                    This is a simple yet powerful tool for automating email composition by the use of local speech recognition and AI model.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">CLI</span>
+                    <span class="tag">Automation</span>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <a href="https://github.com/harshisking/the-loom" class="project-title">
+                        <i class="fas fa-terminal"></i> The Loom
+                    </a>
+                    <div class="project-links">
+                        <a href="https://github.com/harshisking/the-loom" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <p class="project-desc">
+                    A simple CLI tool to manage your ideas. 
+                    It improves efficiency in capturing and organizing thoughts.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">CLI</span>
+                    <span class="tag">Productivity</span>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <a href="https://harshbarot.me" class="project-title">
+                        <i class="fas fa-globe"></i> Personal Portfolio
+                    </a>
+                    <div class="project-links">
+                        <a href="https://github.com/harshisking/harshbarot.me" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <p class="project-desc">
+                    This website! Built with HTML/CSS and AI. 
+                    Dark theme, responsive design, and minimalist aesthetic.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">Design</span>
+                    <span class="tag">Web</span>
+                </div>
+            </div>
+
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="https://github.com/harshisking" class="btn btn-secondary" style="margin: 0;">
+                <i class="fab fa-github"></i> View All on GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Stories Preview Section -->
+        <!-- Stories Preview Section -->
+    <section id="stories">
+        <h2 class="section-title"><i class="fas fa-pen-nib"></i> Writing</h2>
+        <div class="stories-preview">
+            <h3>I write fiction and poetry.</h3>
+            <p>Mystery stories that keep you guessing, and poems about nature and the human condition.</p>
+            <a href="/stories.html" class="btn btn-primary" style="margin: 0;">
+                Read Stories <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Built by Harsh Barot</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            <i class="fab fa-linux"></i> Made with Linux & Late Nights
+        </p>
+    </footer>
+
+    <!-- Smooth Scroll -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
