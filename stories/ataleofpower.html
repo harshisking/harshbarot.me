@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>A Tale of Power — Harsh Barot</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #151515;
+    --bg-card: #1a1a1a;
+    --text-primary: #eaeaea;
+    --text-secondary: #bdbdbd;
+    --text-muted: #9a9a9a;
+    --accent: #e2cbf6;
+    --accent-dim: rgba(226, 203, 246, 0.1);
+    --border: #2a2a2a;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    line-height: 1.8;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Navigation */
+  .nav {
+    margin-bottom: 3rem;
+  }
+
+  .back-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+    padding: 0.5rem 0;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  /* Story Header */
+  .story-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .genre-tag {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.4rem 1rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .meta {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .status-complete {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* Poetry Specific Styling */
+  .poem {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    text-align: center;
+    line-height: 2.2;
+    color: var(--text-primary);
+    padding: 2rem 0;
+    font-size: 1.2rem;
+  }
+
+  .stanza {
+    margin-bottom: 2.5rem;
+  }
+
+  .stanza:last-child {
+    margin-bottom: 0;
+  }
+
+  .line {
+    margin-bottom: 0.5rem;
+  }
+
+  /* End marker */
+  .end-marker {
+    text-align: center;
+    margin-top: 4rem;
+    color: var(--accent);
+    font-size: 1.2rem;
+    opacity: 0.6;
+  }
+
+  /* Footer */
+  .story-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-weight: 600;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(226, 203, 246, 0.2);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Selection color */
+  ::selection {
+    background: var(--accent);
+    color: var(--bg-primary);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    body {
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .poem {
+      font-size: 1.1rem;
+      text-align: left;
+      padding: 1rem 0;
+    }
+
+    .meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .story-header, .poem {
+    animation: fadeIn 0.6s ease-out;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav class="nav">
+    <a href="/stories.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Stories
+    </a>
+  </nav>
+
+  <header class="story-header">
+    <span class="genre-tag">Poem</span>
+    <h1>A Tale of Power</h1>
+    <div class="meta">
+      <span><i class="far fa-calendar"></i> Last Updated: 28/03/2026</span>
+      <span class="status-complete"><i class="fas fa-check"></i> Status: Complete</span>
+      <span><i class="far fa-clock"></i> 2 min read</span>
+    </div>
+  </header>
+
+  <article class="poem">
+    <div class="stanza">
+      <div class="line">I am to tell a story,</div>
+      <div class="line">Of utter power and glory.</div>
+      <div class="line">Be its origin light or dark,</div>
+      <div class="line">It leaves a bleeding mark.</div>
+    </div>
+
+    <div class="stanza">
+      <div class="line">Men came,</div>
+      <div class="line">Men made,</div>
+      <div class="line">Men eroded,</div>
+      <div class="line">Men—dead.</div>
+    </div>
+
+    <div class="stanza">
+      <div class="line">What story am I to tell?</div>
+      <div class="line">A tale of power and prowess—</div>
+      <div class="line">Dark, perhaps—yet fiction still,</div>
+      <div class="line">An insane writer’s imagination.</div>
+    </div>
+
+    <div class="stanza">
+      <div class="line">Proclaimed are the fathers of this art,</div>
+      <div class="line">Whose words—</div>
+      <div class="line">Pierce through the flesh of the mind,</div>
+      <div class="line">Like a dart.</div>
+    </div>
+  </article>
+
+  <div class="end-marker">~</div>
+
+  <footer class="story-footer">
+    <div class="nav-buttons">
+      <a href="/stories/onature.html" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Previous
+      </a>
+      <span class="btn btn-secondary" style="opacity: 0.5; cursor: not-allowed;">
+        Next <i class="fas fa-arrow-right"></i>
+      </span>
+    </div>
+    <a href="/stories.html" class="btn btn-primary">
+      <i class="fas fa-book"></i> All Stories
+    </a>
+  </footer>
+
+</div>
+</body>
+</html>
