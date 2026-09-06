@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="अंतिम चरण — एक कविता">
+  <title>अंतिम चरण</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500&display=swap');
+
+    :root {
+      --bg: #0d0d0f;
+      --text: #e8e3dc;
+      --muted: #8e8a84;
+      --accent: #cfc6b8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Noto Serif Devanagari", Georgia, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5rem 1.5rem;
+    }
+
+    main {
+      width: min(680px, 100%);
+    }
+
+    header {
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .divider {
+      width: 42px;
+      height: 1px;
+      background: var(--accent);
+      margin: 1.8rem auto 0;
+      opacity: 0.7;
+    }
+
+    .poem {
+      font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+      line-height: 2.15;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    .stanza {
+      margin: 0 0 2.4rem;
+    }
+
+    .refrain {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .final {
+      margin-top: 3rem;
+      font-size: 1.05em;
+    }
+
+    footer {
+      margin-top: 5rem;
+      text-align: center;
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 3rem 1.2rem;
+        align-items: flex-start;
+      }
+
+      header {
+        margin-bottom: 3rem;
+      }
+
+      .poem {
+        line-height: 2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">कविता</div>
+      <h1>अंतिम चरण</h1>
+      <div class="divider"></div>
+    </header>
+
+    <article class="poem">
+      <p class="stanza">
+        जब अंतिम जीवन का चरण होगा,<br>
+        जब चयन मरण का होगा,<br>
+        <span class="refrain">कह पाऊँ यह मैं,</span><br>
+        पहले प्रभु के दर्शन,<br>
+        फिर स्वर्ग या नरक होगा,<br>
+        <span class="refrain">कह पाऊँ यह मैं।</span>
+      </p>
+
+      <p class="stanza">
+        कर्म कभी बुरा सोच के नहीं किया,<br>
+        ना बाँधी है परिणाम की बेड़ियाँ,<br>
+        फिर स्वर्ग या नरक होगा,<br>
+        <span class="refrain">कह पाऊँ यह मैं।</span>
+      </p>
+
+      <p class="stanza final">
+        ना कभी मृत्यु से डरा,<br>
+        ना ही कभी हारा हूँ,<br>
+        मृत्यु को, प्रभु,<br>
+        आपसे मिलने गले लगा रहा हूँ।
+      </p>
+    </article>
+
+    <footer>—</footer>
+  </main>
+</body>
+</html>

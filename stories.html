@@ -139,6 +139,40 @@
     font-weight: 500;
     border: 1px solid rgba(226, 203, 246, 0.2);
   }
+  /* Featured poem card */
+  .story-card.antimcharan {
+    background:
+    radial-gradient(circle at 90% 10%, rgba(255, 45, 25, 0.18), transparent 45%),
+    #180f0f;
+    border-color: #5a2420;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 25px rgba(255, 45, 25, 0.08);
+  }
+
+  .story-card.antimcharan::before {
+    background: linear-gradient(90deg, #ff321f, #b51f16, transparent);
+    opacity: 1;
+  }
+
+  .story-card.antimcharan h2 {
+   color: #ff5a47;
+  }
+
+  .story-card.antimcharan {
+    border-color: #ff4533;
+    box-shadow:
+    0 12px 40px rgba(255, 55, 35, 0.18),
+    0 0 35px rgba(255, 45, 25, 0.12);
+  }
+
+  .story-card.antimcharan h2 {
+    color: #fff;
+  }
+
+  .story-card.antimcharan .genre-tag {
+    background: rgba(255, 55, 35, 0.1);
+    color: #ff705f;
+    border-color: rgba(255, 65, 45, 0.25);
+ }
 
   /* Mobile */
   @media (max-width: 768px) {
@@ -184,6 +218,13 @@
   </div>
 
   <div class="grid">
+    
+    <div class="story-card antimcharan" onclick="location.href='/stories/antimcharan.html'">
+      <h2>अंतिम चरण</h2>
+      <p>जब अंतिम जीवन का चरण होगा, जब चयन मरण का होगा...</p>
+      <span class="genre-tag">कविता</span>
+    </div>
+
     
     <div class="story-card" onclick="location.href='/stories/ayedoctor.html'">
       <h2>Aye Doctor</h2>
